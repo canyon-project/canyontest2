@@ -10,13 +10,13 @@ import (
 func HealthCheck(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"status":  "ok",
-		"message": "Backend service is running",
+		"message": "Backend service is running123",
 	})
 }
 
 // Ping 测试端点处理器
 func Ping(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"message": "pong",
+		"message": "pong123",
 	})
 }
