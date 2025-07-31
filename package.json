@@ -1,0 +1,18 @@
+{
+  "name": "canyon",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "nx run-many --target=dev --all",
+    "build": "nx run-many --target=build --all",
+    "lint": "nx run-many --target=lint --all",
+    "test": "nx run-many --target=test --all"
+  },
+  "devDependencies": {
+    "nx": "^18.0.0",
+    "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "zx": "^8.7.1"
+  }
+}
