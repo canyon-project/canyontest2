@@ -32,6 +32,10 @@ RUN apk add --no-cache \
     tzdata \
     && rm -rf /var/cache/apk/*
 
+# 创建日志目录
+RUN mkdir -p /opt/logs/100056529 && \
+    chmod 755 /opt/logs/100056529
+
 # 复制应用文件
 COPY --from=frontend-builder /app/packages/frontend/dist /static
 COPY --from=backend-builder /app/main /app/main

@@ -3,10 +3,13 @@ package main
 import (
 	"backend/handlers"
 	"backend/middleware"
+	"io"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -36,7 +39,34 @@ func StaticFileHandler(staticPath string) gin.HandlerFunc {
 	}
 }
 
+func setupLogging() {
+	// 确保日志目录存在
+	logDir := "/opt/logs/100056529"
+	if err := os.MkdirAll(logDir, 0755); err != nil {
+		log.Printf("Failed to create log directory: %v", err)
+		return
+	}
+
+	// 创建日志文件，按日期命名
+	logFileName := filepath.Join(logDir, time.Now().Format("2006-01-02")+".log")
+	logFile, err := os.OpenFile(logFileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err != nil {
+		log.Printf("Failed to open log file: %v", err)
+		return
+	}
+
+	// 设置日志输出到文件和控制台
+	multiWriter := io.MultiWriter(os.Stdout, logFile)
+	log.SetOutput(multiWriter)
+	gin.DefaultWriter = multiWriter
+
+	log.Printf("Logging initialized, writing to: %s", logFileName)
+}
+
 func main() {
+	// 设置日志
+	setupLogging()
+
 	// 初始化数据库
 // 	config.InitDatabase()
 
