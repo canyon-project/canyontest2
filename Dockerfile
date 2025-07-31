@@ -35,9 +35,13 @@ RUN apk add --no-cache \
 # 复制应用文件
 COPY --from=frontend-builder /app/packages/frontend/dist /static
 COPY --from=backend-builder /app/main /app/main
+COPY entrypoint.sh /opt/container/entrypoint.sh
+
+# 设置脚本执行权限
+RUN chmod +x /opt/container/entrypoint.sh
 
 # 暴露端口
 EXPOSE 8080
 
 # 运行后端
-CMD ["/app/main"]
+CMD ["/opt/container/entrypoint.sh"]
