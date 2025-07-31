@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: zhangtao25/canyontest
+  IMAGE_NAME: zhangtao25/canyontest2
 
 jobs:
   build-and-push:
