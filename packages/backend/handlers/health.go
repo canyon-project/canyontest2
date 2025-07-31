@@ -17,6 +17,6 @@ func HealthCheck(c *gin.Context) {
 // Ping 测试端点处理器
 func Ping(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"message": "pong123",
+		"message": "pong1235",
 	})
 }
